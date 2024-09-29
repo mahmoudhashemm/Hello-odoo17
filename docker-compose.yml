@@ -1,0 +1,51 @@
+version: '3.4'
+services:
+  db:
+    image: postgres:14.10
+    user: root
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo16@2022      
+      - POSTGRES_DB=postgres
+    restart: always             # run as a service
+    volumes:
+        - ./postgresql:/var/lib/postgresql/data
+
+  odoo16:
+    image: odoo:16
+    user: root
+    depends_on:
+      - db
+    ports:
+      - "10016:8069"
+      - "20016:8072" # live chat
+    tty: true
+    command: --
+    environment:
+      - HOST=db
+      - USER=odoo
+      - PASSWORD=odoo16@2022
+    volumes:
+      #- /etc/timezone:/etc/timezone:trt
+      #- /etc/localtime:/etc/localtime:trt
+      # - ./entrypoint.sh:/entrypoint.sh   # if you want to install additional Python packages, uncomment this line!
+      - ./addons:/mnt/extra-addons
+      - ./etc:/etc/odoo
+    restart: always             # run as a service
+
+  pgadmin:
+    image: fenglc/pgadmin4
+    ports:
+      - 5050:5050
+    restart: always
+    links:
+      - db:db
+    environment:
+      DEFAULT_USER: admin
+      DEFAULT_PASSWORD: YbrS9eP4!j
+     # VIRTUAL_HOST: 
+     # LETSENCRYPT_HOST:
+     # VIRTUAL_PORT: 5050
+    volumes:
+      - ./pgadmin-data:/var/lib/pgadmin
+      #- /var/run/docker.sock:/tmp/docker.sock
