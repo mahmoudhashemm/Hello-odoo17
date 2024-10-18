@@ -4,8 +4,7 @@ services:
     image: postgres:14.10
     user: root
     environment:
-      - POSTGRES_USER=odoo
-      - POSTGRES_PASSWORD=odoo16@2022      
+      - POSTGRES_USER=odoo   
       - POSTGRES_DB=postgres
     restart: always             # run as a service
     volumes:
@@ -17,14 +16,13 @@ services:
     depends_on:
       - db
     ports:
-      - "10016:8069"
-      - "20016:8072" # live chat
+      - "10019:8069"
+      - "20014:8072" # live chat
     tty: true
     command: --
     environment:
       - HOST=db
       - USER=odoo
-      - PASSWORD=odoo16@2022
     volumes:
       #- /etc/timezone:/etc/timezone:trt
       #- /etc/localtime:/etc/localtime:trt
@@ -36,13 +34,13 @@ services:
   pgadmin:
     image: fenglc/pgadmin4
     ports:
-      - 5050:5050
+      - 5051:5051
     restart: always
     links:
       - db:db
     environment:
-      DEFAULT_USER: admin
-      DEFAULT_PASSWORD: YbrS9eP4!j
+      DEFAULT_USER: mahmoud
+      DEFAULT_PASSWORD: Omar012
      # VIRTUAL_HOST: 
      # LETSENCRYPT_HOST:
      # VIRTUAL_PORT: 5050
