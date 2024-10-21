@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-npm cache clean --force
+npm cache clean 
 rm -rf /usr/local/lib/node_modules/rtlcss
 
 # تثبيت حزم npm
