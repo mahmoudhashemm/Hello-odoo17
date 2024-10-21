@@ -28,7 +28,7 @@ services:
       - ./addons:/mnt/extra-addons
       - ./enterprise:/mnt/enterprise
       - ./etc:/etc/odoo
-      - ./entrypoint.sh:/entrypoint.sh
+     # - ./entrypoint.sh:/entrypoint.sh
     restart: always
 
   # pgadmin:
