@@ -7,6 +7,7 @@ git clone --depth=1 https://github.com/mahmoudhashemm/Hello-odoo17.git $DESTINAT
 rm -rf $DESTINATION/.git
 # set permission
 mkdir -p $DESTINATION/postgresql
+mkdir -p enterprise
 sudo chmod -R 777 $DESTINATION
 # config
 if grep -qF "fs.inotify.max_user_watches" /etc/sysctl.conf; then echo $(grep -F "fs.inotify.max_user_watches" /etc/sysctl.conf); else echo "fs.inotify.max_user_watches = 524288" | sudo tee -a /etc/sysctl.conf; fi
