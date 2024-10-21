@@ -1,51 +1,25 @@
 #!/bin/bash
-
 set -e
 
-# set the postgres database host, port, user and password according to the environment
-# and pass them as arguments to the odoo process if not present in the config file
-# : ${HOST:=${DB_PORT_5432_TCP_ADDR:='db'}}
-# : ${PORT:=${DB_PORT_5432_TCP_PORT:=5432}}
-# : ${USER:=${DB_ENV_POSTGRES_USER:=${POSTGRES_USER:='odoo'}}}
-# : ${PASSWORD:=${DB_ENV_POSTGRES_PASSWORD:=${POSTGRES_PASSWORD:='omar@012'}}}
+npm cache clean --force
+rm -rf /usr/local/lib/node_modules/rtlcss
 
-# install python packages
-pip3 install pip --upgrade
-pip3 install -r /etc/odoo/requirements.txt
+# تثبيت حزم npm
+npm install -g less less-plugin-clean-css rtlcss
 
-# sed -i 's|raise werkzeug.exceptions.BadRequest(msg)|self.jsonrequest = {}|g' /usr/lib/python3/dist-packages/odoo/http.py
+# تحديث وترقية النظام
+apt-get update && apt-get upgrade -y
 
-# DB_ARGS=()
-# function check_config() {
-#     param="$1"
-#     value="$2"
-#     if grep -q -E "^\s*\b${param}\b\s*=" "$ODOO_RC" ; then       
-#         value=$(grep -E "^\s*\b${param}\b\s*=" "$ODOO_RC" |cut -d " " -f3|sed 's/["\n\r]//g')
-#     fi;
-#     DB_ARGS+=("--${param}")
-#     DB_ARGS+=("${value}")
-# }
-# check_config "db_host" "$HOST"
-# check_config "db_port" "$PORT"
-# check_config "db_user" "$USER"
-# check_config "db_password" "$PASSWORD"
+# تثبيت الحزم المطلوبة
+apt install -y zip gdebi net-tools git python3-pip build-essential wget python3-dev python3-venv python3-wheel libfreetype6-dev libxml2-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less libjpeg-dev zlib1g-dev libxslt1-dev libldap2-dev libtiff5-dev libjpeg8-dev libopenjp2-7-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev nodejs
 
-# case "$1" in
-#     -- | odoo)
-#         shift
-#         if [[ "$1" == "scaffold" ]] ; then
-#             exec odoo "$@"
-#         else
-#             wait-for-psql.py ${DB_ARGS[@]} --timeout=30
-#             exec odoo "$@" "${DB_ARGS[@]}"
-#         fi
-#         ;;
-#     -*)
-#         wait-for-psql.py ${DB_ARGS[@]} --timeout=30
-#         exec odoo "$@" "${DB_ARGS[@]}"
-#         ;;
-#     *)
-#         exec "$@"
-# esac
+# تثبيت مكتبات Python
+apt install -y meson ninja-build libcairo2-dev python3-cairo-dev
+pip3 install gdata psycogreen suds rlPyCairo phonenumbers
+easy_install greenlet gevent
 
-exit 1
+# تثبيت متطلبات Odoo
+pip3 install -r https://raw.githubusercontent.com/odoo/odoo/17.0/requirements.txt --user
+
+# إنهاء السكربت بنجاح
+exit 0
