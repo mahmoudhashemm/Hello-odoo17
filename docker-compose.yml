@@ -28,7 +28,7 @@ services:
       - ./addons:/mnt/extra-addons
       - ./enterprise:/mnt/enterprise
       - ./etc:/etc/odoo
-      - /var/run/postgresql:/var/run/postgresql  # الربط مع مجلد Unix Socket
+      - ./entrypoint.sh:/entrypoint.sh
     restart: always
 
   # pgadmin:
