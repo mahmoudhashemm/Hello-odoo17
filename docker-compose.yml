@@ -9,10 +9,7 @@ services:
       - POSTGRES_DB=postgres
     restart: always
     volumes:
-      - ./entrypoint.sh:/entrypoint.sh
-      - ./postgresql:/var/lib/postgresql/data
-      - /var/run/postgresql:/var/run/postgresql  # تمكين الاتصال عبر Unix Socket
-
+        - ./postgresql:/var/lib/postgresql/data
   odoo16:
     image: odoo:16
     user: root
@@ -24,11 +21,9 @@ services:
     tty: true
     command: --
     environment:
-      - HOST=/var/run/postgresql  # استخدام Unix Socket
+      - HOST=db
       - USER=odoo
-      - PASSWORD=odoo_password
-      - DB_PORT=  # إزالة منفذ TCP لأننا نستخدم Unix Socket
-      - DB_NAME=postgres
+      - PASSWORD=Omar@012
     volumes:
       - ./addons:/mnt/extra-addons
       - ./enterprise:/mnt/enterprise
