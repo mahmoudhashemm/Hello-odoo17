@@ -34,15 +34,15 @@ services:
       - /var/run/postgresql:/var/run/postgresql  # الربط مع مجلد Unix Socket
     restart: always
 
-  pgadmin:
-    image: fenglc/pgadmin4
-    ports:
-      - 5051:5051
-    restart: always
-    depends_on:
-      - db
-    environment:
-      DEFAULT_USER: mahmoud
-      DEFAULT_PASSWORD: Omar012
-    volumes:
-      - ./pgadmin-data:/var/lib/pgadmin
+  # pgadmin:
+  #   image: fenglc/pgadmin4
+  #   ports:
+  #     - 5051:5051
+  #   restart: always
+  #   depends_on:
+  #     - db
+  #   environment:
+  #     DEFAULT_USER: mahmoud
+  #     DEFAULT_PASSWORD: Omar012
+  #   volumes:
+  #     - ./pgadmin-data:/var/lib/pgadmin
