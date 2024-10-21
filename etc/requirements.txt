@@ -6,3 +6,22 @@
 # then down the docker container ($ docker-compose down) and up it again ($ docker-compose up -d).
 # -----------------------
 # paramiko==2.7.2 # for auto_backup module
+
+#!/bin/bash
+
+# تثبيت حزم npm
+npm install -g less less-plugin-clean-css rtlcss
+
+# تحديث وترقية النظام
+apt-get update && apt-get upgrade -y
+
+# تثبيت الحزم المطلوبة
+apt install -y zip gdebi net-tools git python3-pip build-essential wget python3-dev python3-venv python3-wheel libfreetype6-dev libxml2-dev libzip-dev libldap2-dev libsasl2-dev python3-setuptools node-less libjpeg-dev zlib1g-dev libpq-dev libxslt1-dev libldap2-dev libtiff5-dev libjpeg8-dev libopenjp2-7-dev liblcms2-dev libwebp-dev libharfbuzz-dev libfribidi-dev libxcb1-dev nodejs
+
+# تثبيت مكتبات Python
+pip3 install gdata psycogreen suds rlPyCairo phonenumbers
+easy_install greenlet gevent
+
+# تثبيت متطلبات Odoo
+pip3 install -r https://raw.githubusercontent.com/odoo/odoo/17.0/requirements.txt --user
+
