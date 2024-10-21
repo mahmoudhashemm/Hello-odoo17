@@ -134,4 +134,6 @@ server {
 ``` bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
-
+``` bash
+git clone --branch main --depth 1 git@github.com:mahmoudhashemm/odoo17
+```
