@@ -130,3 +130,8 @@ server {
 <img src="screenshots/2022-10-17_22h16_30.png" width="100%">
 
 <
+
+``` bash
+ssh-keygen -t ed25519 -C "your_email@example.com"
+```
+
