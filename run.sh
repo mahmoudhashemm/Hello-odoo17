@@ -19,6 +19,8 @@ sed -i 's/10019/'$PORT'/g' $DESTINATION/docker-compose.yml
 sed -i 's/20014/'$CHAT'/g' $DESTINATION/docker-compose.yml
 sed -i 's/8069/'$PORT8069'/g' $DESTINATION/docker-compose.yml
 sed -i 's/8072/'$PORT8072'/g' $DESTINATION/docker-compose.yml
+sed -i 's/8069/'$PORT8069'/g' $DESTINATION/etc/odoo.conf
+sed -i 's/8072/'$PORT8072'/g' $DESTINATION/etc/odoo.conf
 # run Odoo
 docker-compose -f $DESTINATION/docker-compose.yml up -d
 
