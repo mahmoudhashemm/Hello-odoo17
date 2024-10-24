@@ -2,6 +2,8 @@
 DESTINATION=$1
 PORT=$2
 CHAT=$3
+port8096=$4
+port8072=$5
 # clone Odoo directory
 git clone --depth=1 https://github.com/mahmoudhashemm/Hello-odoo17.git $DESTINATION
 rm -rf $DESTINATION/.git
@@ -15,6 +17,8 @@ if grep -qF "fs.inotify.max_user_watches" /etc/sysctl.conf; then echo $(grep -F 
 sudo sysctl -p
 sed -i 's/10019/'$PORT'/g' $DESTINATION/docker-compose.yml
 sed -i 's/20014/'$CHAT'/g' $DESTINATION/docker-compose.yml
+sed -i 's/8096/'$PORT8096'/g' $DESTINATION/docker-compose.yml
+sed -i 's/8072/'$port8072'/g' $DESTINATION/docker-compose.yml
 # run Odoo
 docker-compose -f $DESTINATION/docker-compose.yml up -d
 
