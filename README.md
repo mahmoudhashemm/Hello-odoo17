@@ -2,6 +2,8 @@
 ``` bash
 test
 ```
+test
+test
 Installing Odoo 16 with one command.
 
 (Supports multiple Odoo instances on one server)
