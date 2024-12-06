@@ -1,10 +1,5 @@
 # Quick install
-``` bash
-test
-```
-test
 
-test
 
 Installing Odoo 16 with one command.
 
